@@ -109,4 +109,4 @@ comments:
 
 ## 许可
 
-主题代码采用 [MIT License](LICENSE)。本地使用的 `PingFang Regular.otf` 和 `YOUSHEhaoshenti-Regular.ttf` 未随仓库发布；如拥有字体使用授权，可自行放入 `themes/giorgio/source/css/`。未提供字体时，页面会使用系统字体回退。
+主题代码采用 [MIT License](LICENSE)。仓库包含 `PingFang Regular.otf` 和 `YOUSHEhaoshenti-Regular.ttf` 字体文件；如需删除，请联系我。
