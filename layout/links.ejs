@@ -1,0 +1,25 @@
+<%- partial('_partial/head') %><%- partial('_partial/header') %>
+<main class="wrap inner-main page-main<%= page.path && page.path.replace(/^\//, '').startsWith('gallery/') ? ' gallery-page' : (page.path && page.path.replace(/^\//, '').startsWith('projects/') ? ' projects-page' : '') %>"><header class="page-heading"><h1><%= page.title || config.title %></h1></header>
+<% const p = (page.path || '').replace(/^\//, '').replace(/index\.html$/, '').replace(/\/$/, ''); const siteData = site.data || {}; %>
+<% const albums = siteData.gallery && Array.isArray(siteData.gallery.albums) ? siteData.gallery.albums : (Array.isArray(page.albums) ? page.albums : (page.gallery && Array.isArray(page.gallery.albums) ? page.gallery.albums : null)); %>
+<% const linkGroups = Array.isArray(siteData.link) ? siteData.link : (siteData.link && Array.isArray(siteData.link.link_list) ? [siteData.link] : null); %>
+<% const pageLinkGroups = Array.isArray(page.links) ? (page.links.some(function(group) { return Array.isArray(group.link_list); }) ? page.links : [{link_list: page.links}]) : null; %>
+<% const friends = linkGroups !== null ? linkGroups : pageLinkGroups; %>
+<% if (p === 'projects') { %>
+  <%- partial('_partial/projects') %>
+<% } else if (p === 'gallery' && albums !== null) { %>
+  <div class="album-grid"><% albums.forEach(function(album) { %><a class="album-card" href="<%= url_for(album.path || album.url || '/gallery/') %>"><% if (album.cover || album.image) { %><img src="<%= url_for(album.cover || album.image) %>" alt="<%= album.title || album.name || '' %>" loading="lazy"><% } %><div><strong><%= album.title || album.name || '相册' %></strong><span><%= album.description || album.desc || '' %> ↗</span></div></a><% }); %></div>
+<% } else if (p === 'shuo' && siteData.shuoshuo && siteData.shuoshuo.entries) { %>
+  <div class="shuo-list"><% siteData.shuoshuo.entries.slice().reverse().forEach(function(item) { %><article class="shuo-card"><div class="shuo-meta"><img src="<%= siteData.shuoshuo.avatar || url_for(theme.profile.avatar) %>" alt="" loading="lazy"><strong><%= item.author || siteData.shuoshuo.author || config.author %></strong><time datetime="<%= giorgio_shuo_datetime(item.date) %>"><%= giorgio_shuo_date(item.date) %></time></div><div class="prose"><%- giorgio_markdown(item.content) %></div></article><% }); %></div>
+<% } else if (p === 'categories') { %>
+  <div class="taxonomy-grid"><% site.categories.toArray().sort(function(a,b){return b.posts.length-a.posts.length}).forEach(function(category) { %><a class="taxonomy-card" href="<%= url_for(category.path) %>"><strong><%= category.name %></strong><span><%= category.posts.length %> 篇文章 ↗</span></a><% }); %></div>
+<% } else if (p === 'tags') { %>
+  <div class="tag-cloud"><% site.tags.toArray().forEach(function(tag) { %><a href="<%= url_for(tag.path) %>"># <%= tag.name %> <small><%= tag.posts.length %></small></a><% }); %></div>
+<% } else if (p === 'link' && friends !== null) { %>
+  <% if (page.content) { %><div class="prose"><%- page.content %></div><% } %>
+  <% friends.forEach(function(group) { %>
+    <% if (group.class_name || group.class_desc || group.signature) { %><header class="friend-group-heading"><h2><%= group.class_name || '友情链接' %></h2><% if (group.class_desc || group.signature) { %><p><%= group.class_desc || group.signature %></p><% } %></header><% } %>
+    <div class="links-grid"><% (group.link_list || []).forEach(function(link) { %><a class="friend-card" href="<%= link.url || link.link %>" target="_blank" rel="noopener noreferrer"><img src="<%= link.avatar || url_for(theme.profile.avatar) %>" alt="" loading="lazy"><div><strong><%= link.name %></strong><span><%= link.descr || link.description || link.signature || '' %></span></div><b>↗</b></a><% }); %></div>
+  <% }); %>
+<% } else { %><div class="prose<%= p.startsWith('gallery/') ? ' gallery-content' : '' %>"><%- page.content %></div><% } %>
+<%- partial('_partial/ad-google', {position: 'page'}) %><%- partial('_partial/comments') %></main><%- partial('_partial/footer') %>

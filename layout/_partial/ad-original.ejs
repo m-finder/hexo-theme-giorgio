@@ -1,0 +1,4 @@
+<% const original = (theme.ads && theme.ads.original) || {}; %>
+<% if (original.enable && original.key && original.src) { %>
+<div class="site-ad original-ad" aria-label="广告"><script>var atOptions = {key: <%- JSON.stringify(String(original.key)) %>, format: 'iframe', height: <%= Number(original.height) || 60 %>, width: <%= Number(original.width) || 468 %>, params: {}};</script><script src="<%= original.src %>" async></script></div>
+<% } %>

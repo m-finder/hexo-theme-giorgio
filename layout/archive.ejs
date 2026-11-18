@@ -1,0 +1,1 @@
+<%- partial('_partial/head') %><%- partial('_partial/header') %><main class="wrap inner-main"><header class="page-heading"><span class="eyebrow">THE ARCHIVE</span><h1>时间线</h1><p>写过的文字，按时间慢慢排好。</p></header><%- partial('_partial/post-list', {posts: (page.posts || site.posts).toArray()}) %><%- partial('_partial/pagination') %></main><%- partial('_partial/footer') %>

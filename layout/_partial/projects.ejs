@@ -1,0 +1,11 @@
+<% const projects = giorgio_projects(page.content); %>
+<% if (projects.length) { %>
+<div class="project-grid">
+  <% projects.forEach(function(project) { %>
+    <article class="project-card<%= project.image ? '' : ' project-card--text' %>">
+      <% if (project.image) { %><div class="project-cover"><%- project.image %></div><% } %>
+      <div class="project-card-body"><%- project.heading %><div class="project-copy"><%- project.content %></div></div>
+    </article>
+  <% }); %>
+</div>
+<% } else { %><div class="prose"><%- page.content %></div><% } %>

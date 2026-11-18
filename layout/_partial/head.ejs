@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="<%= config.language || 'zh-CN' %>" data-mode="<%= theme.appearance.mode || 'auto' %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="<%= page.description || config.description || '' %>">
+  <title><%= page.title ? page.title + ' · ' : '' %><%= config.title %></title>
+  <link rel="icon" href="<%= url_for('/images/favicon.ico') %>">
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="<%= url_for('/atom.xml') %>">
+  <link rel="stylesheet" href="<%= url_for('/css/giorgio.css') %>">
+  <% if (theme.ads && theme.ads.google && theme.ads.google.enable && theme.ads.google.client) { %><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<%= encodeURIComponent(theme.ads.google.client) %>" crossorigin="anonymous"></script><% } %>
+  <script>try{let m=localStorage.getItem('giorgio-mode');if(m==='light'||m==='dark')document.documentElement.dataset.mode=m}catch(e){}</script>
+</head>
+<body<% if (theme.appearance.cursor_glow) { %> class="glow-enabled"<% } %>>
+<canvas class="background-dots" aria-hidden="true"></canvas>
+<div class="cursor-glow" aria-hidden="true"></div>

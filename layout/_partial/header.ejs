@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="header-inner wrap">
+    <a class="brand" href="<%= url_for('/') %>" aria-label="<%= config.title %> 首页"><% if (theme.logo && theme.logo.enable && theme.logo.image) { %><img class="brand-image" src="<%= url_for(theme.logo.image) %>" alt="" width="34" height="34"><% } %><span><%= config.title %></span></a>
+    <button class="mobile-menu-toggle icon-button" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="site-nav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav id="site-nav" class="site-nav" aria-label="主导航">
+      <% Object.entries(theme.menu || {}).forEach(function(entry) { const label=entry[0], value=entry[1]; %>
+        <% if (typeof value === 'string') { %>
+          <a class="nav-link<%= page.path === value.replace(/^\//, '') ? ' is-active' : '' %>" href="<%= url_for(value) %>"><%= label %></a>
+        <% } else { %>
+          <div class="nav-group">
+            <button class="nav-link nav-group-toggle" type="button" aria-expanded="false"><%= label %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
+            <div class="nav-submenu">
+              <% Object.entries(value || {}).forEach(function(child) { %><a href="<%= url_for(child[1]) %>"><%= child[0] %></a><% }); %>
+            </div>
+          </div>
+        <% } %>
+      <% }); %>
+    </nav>
+    <button id="theme-toggle" class="icon-button theme-toggle" type="button" aria-label="切换背景明暗" title="切换背景明暗"><svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5 8.5 8.5 0 1 0 20.5 14.3Z"/></svg></button>
+  </div>
+</header>

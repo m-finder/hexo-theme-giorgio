@@ -1,0 +1,82 @@
+# 导航菜单。值为链接时是一级菜单；嵌套映射会生成二级菜单。
+# 可添加、删除或重命名菜单项；路径需对应站点已有页面。
+menu:
+  首页: /
+  文章:
+    分类: /categories/
+    标签: /tags/
+    归档: /archives/
+  更多:
+    项目: /projects/
+    说说: /shuo/
+    相册: /gallery/
+    读书: /books/
+    电影: /movies/
+    游戏: /games/
+    友情链接: /link/
+    关于: /about/
+# 首页资料区。头像路径指向站点 source 目录；align 可选 left、center、right。
+profile:
+  avatar: /images/avatar.jpeg
+  align: center
+# 导航栏图片。enable 可选 true、false；默认只显示站点标题。
+logo:
+  enable: false
+  image: /images/avatar.jpeg
+# 社交链接。键名是显示名称，值是完整 URL 或 mailto: 地址。
+# 例如：GitHub: https://github.com/your-name
+#       邮箱: mailto:you@example.com
+social: {}
+# 首页站内搜索。enable 可选 true、false；搜索索引由主题生成。
+search:
+  enable: true
+  placeholder: 搜索文章…
+# 首页内容。categories 留空显示最近更新；填写分类名称或 slug 则按分类显示。
+# 每项可写成分类名，或写成 {name: 分类名, limit: 条数}；limit 为非负整数。
+home:
+  limit: 12
+  categories: []
+# 外观。mode 可选 auto（跟随系统）、light（浅色）、dark（深色）。
+# cursor_glow 可选 true、false，控制鼠标光斑。
+appearance:
+  mode: auto
+  cursor_glow: true
+# Giscus 评论。enable 可选 true、false；仓库参数建议填在站点根目录的
+# _config.giorgio.yml 中，避免将个人站点标识发布到主题仓库。
+comments:
+  enable: false
+  repo: ''
+  repo_id: ''
+  category: ''
+  category_id: ''
+# 页脚。since 为建站年份；privacy 留空则不显示隐私政策链接。
+footer:
+  since: 2016
+  privacy: /privacy/
+  wormhole:
+    # 十年之约虫洞。enable 可选 true、false；position 可选 center、footer。
+    # image_light 用于浅色主题（黑色图），image_dark 用于深色主题（白色图）。
+    enable: true
+    position: center
+    url: https://www.foreverblog.cn/go.html
+    image_light: https://www.foreverblog.cn/assets/logo/wormhole_v2_dark.webp
+    image_dark: https://www.foreverblog.cn/assets/logo/wormhole_v2_light.webp
+# 广告默认关闭。启用时请在站点根目录的 _config.giorgio.yml 填写账号参数。
+ads:
+  google:
+    # enable 可选 true、false；client 是 AdSense 发布商 ID。
+    enable: false
+    client: ''
+    slots:
+      # 广告位 ID；留空则该位置不显示。home、post、page 分别是首页、文章页、普通页。
+      home: ''
+      post: ''
+      page: ''
+  original:
+    # 原站广告脚本。enable 可选 true、false；key 和 src 由广告平台提供。
+    # width、height 为正整数，单位 px。
+    enable: false
+    key: ''
+    src: ''
+    width: 468
+    height: 60

@@ -1,0 +1,4 @@
+<% const wormhole = theme.footer && theme.footer.wormhole; const options = typeof wormhole === 'string' ? {enable: true, position: 'footer', url: wormhole} : (wormhole || {}); %>
+<% if (options.enable !== false && options.url) { %>
+<a class="wormhole-link" href="<%= options.url %>" target="_blank" rel="noopener noreferrer" title="十年之约虫洞"><% if (options.image_light && options.image_dark) { %><img class="wormhole-image wormhole-image--light" src="<%= options.image_light %>" alt="十年之约虫洞" loading="lazy"><img class="wormhole-image wormhole-image--dark" src="<%= options.image_dark %>" alt="" loading="lazy" aria-hidden="true"><% } else if (options.image) { %><img src="<%= options.image %>" alt="十年之约虫洞" loading="lazy"><% } else { %><span>十年之约虫洞 ↗</span><% } %></a>
+<% } %>

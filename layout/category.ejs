@@ -1,0 +1,1 @@
+<%- partial('_partial/head') %><%- partial('_partial/header') %><main class="wrap inner-main"><header class="page-heading"><span class="eyebrow">CATEGORY</span><h1><%= page.category || page.title || '分类' %></h1></header><%- partial('_partial/post-list', {posts: page.posts.toArray()}) %><%- partial('_partial/pagination') %></main><%- partial('_partial/footer') %>
