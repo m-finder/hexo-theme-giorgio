@@ -84,7 +84,7 @@ albums:
     description: 日常照片
 ```
 
-友情链接优先读取站点 `source/_data/link.yml` 中的分组 `link_list`，也支持页面 front matter 的 `links`。分组可使用 `class_desc`，单条友链的签名可使用 `descr`、`description` 或 `signature`。说说读取 `source/_data/shuoshuo.yml`。
+友情链接优先读取站点 `source/_data/link.yml` 中的分组 `link_list`，也支持页面 front matter 的 `links`。分组可使用 `class_desc`，单条友链的签名可使用 `descr`、`description` 或 `signature`。说说读取 `source/_data/shuoshuo.yml` 的 `entries`。提供对应的 `_data` 文件后，主题会自动生成 `/link/` 和 `/shuo/` 页面，不需要再创建这两个页面的 Markdown 文件。
 
 ## 评论与广告
 
