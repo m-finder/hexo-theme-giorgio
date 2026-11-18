@@ -13,8 +13,8 @@ menu:
     读书: /books/
     电影: /movies/
     游戏: /games/
-    友情链接: /link/
-    关于: /about/
+  友情链接: /link/
+  关于: /about/
 # 首页资料区。头像路径指向站点 source 目录；align 可选 left、center、right。
 profile:
   avatar: /images/avatar.jpeg
