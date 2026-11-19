@@ -31,6 +31,9 @@ social: {}
 search:
   enable: true
   placeholder: 搜索文章…
+# 说说分页。per_page 为每页显示的条数，默认 20。
+shuoshuo:
+  per_page: 20
 # 首页内容。categories 留空显示最近更新；填写分类名称或 slug 则按分类显示。
 # 每项可写成分类名，或写成 {name: 分类名, limit: 条数}；limit 为非负整数。
 home:
