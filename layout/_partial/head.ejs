@@ -12,7 +12,7 @@
   <link rel="alternate" type="application/atom+xml" title="RSS" href="<%= url_for('/atom.xml') %>">
   <link rel="stylesheet" href="<%= url_for('/css/giorgio.css') %>">
   <% if (theme.ads && theme.ads.google && theme.ads.google.enable && theme.ads.google.client) { %><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<%= encodeURIComponent(theme.ads.google.client) %>" crossorigin="anonymous"></script><% } %>
-  <script>try{let m=localStorage.getItem('giorgio-mode');if(m==='light'||m==='dark')document.documentElement.dataset.mode=m}catch(e){}</script>
+  <script>try{let m=localStorage.getItem('giorgio-mode');if(m==='light'||m==='dark')document.documentElement.dataset.mode=m;let p=localStorage.getItem('giorgio-particle')||document.documentElement.dataset.particleDefault;let c=<%- JSON.stringify(theme.appearance.particles && theme.appearance.particles.palette || []).replace(/</g,'\\u003c') %>.find(x=>x.name===p);if(c&&/^#[0-9a-f]{6}$/i.test(c.from)&&/^#[0-9a-f]{6}$/i.test(c.to)){document.documentElement.style.setProperty('--header-line-from',c.from);document.documentElement.style.setProperty('--header-line-to',c.to)}}catch(e){}</script>
 </head>
 <body<% if (theme.appearance.cursor_glow) { %> class="glow-enabled"<% } %>>
 <canvas class="background-dots" aria-hidden="true"></canvas>
