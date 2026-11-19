@@ -19,7 +19,7 @@
   <% if (page.content) { %><div class="prose"><%- page.content %></div><% } %>
   <% friends.forEach(function(group) { %>
     <% if (group.class_name || group.class_desc || group.signature) { %><header class="friend-group-heading"><h2><%= group.class_name || '友情链接' %></h2><% if (group.class_desc || group.signature) { %><p><%= group.class_desc || group.signature %></p><% } %></header><% } %>
-    <div class="links-grid"><% (group.link_list || []).forEach(function(link) { %><a class="friend-card" href="<%= link.url || link.link %>" target="_blank" rel="noopener noreferrer"><img src="<%= link.avatar || url_for(theme.profile.avatar) %>" alt="" loading="lazy"><div><strong><%= link.name %></strong><span><%= link.descr || link.description || link.signature || '' %></span></div><b>↗</b></a><% }); %></div>
+    <div class="links-grid"><% (group.link_list || []).forEach(function(link) { %><a class="friend-card" href="<%= link.url || link.link %>" title="<%= link.descr || link.description || link.signature || '' %>" target="_blank" rel="noopener noreferrer"><img src="<%= link.avatar || url_for(theme.profile.avatar) %>" alt="" loading="lazy"><div><strong><%= link.name %></strong><span><%= link.descr || link.description || link.signature || '' %></span></div><b>↗</b></a><% }); %></div>
   <% }); %>
 <% } else { %><div class="prose<%= p.startsWith('gallery/') ? ' gallery-content' : '' %>"><%- page.content %></div><% } %>
 <%- partial('_partial/ad-google', {position: 'page'}) %><%- partial('_partial/comments') %></main><%- partial('_partial/footer') %>
