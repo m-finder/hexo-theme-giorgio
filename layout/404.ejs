@@ -1,1 +1,14 @@
-<%- partial('_partial/head') %><%- partial('_partial/header') %><main class="wrap inner-main"><header class="page-heading"><span class="eyebrow">PAGE NOT FOUND</span><h1>这里什么都没有</h1><p>这页走丢了，回首页看看吧。</p></header><a class="pill-link" href="<%= url_for('/') %>">返回首页 <span>↗</span></a></main><%- partial('_partial/footer') %>
+<%- partial('_partial/head') %>
+<%- partial('_partial/header') %>
+<main class="wrap inner-main not-found-page">
+  <div class="not-found-card">
+    <span class="not-found-code" aria-hidden="true">404</span>
+    <div class="not-found-copy">
+      <span class="eyebrow">PAGE NOT FOUND</span>
+      <h1>页面走丢了</h1>
+      <p>这个地址没有找到内容。</p>
+      <a class="not-found-link" href="<%= url_for('/') %>">返回首页 <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</main>
+<%- partial('_partial/footer') %>

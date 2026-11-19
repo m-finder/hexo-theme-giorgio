@@ -5,6 +5,14 @@ hexo.extend.generator.register('giorgio-data-pages', function (locals) {
   const pages = [];
   const existingPaths = new Set(locals.pages.toArray().map(page => page.path));
 
+  if (!existingPaths.has('404.html')) {
+    pages.push({
+      path: '404.html',
+      layout: '404',
+      data: { path: '404.html', layout: '404', title: '页面未找到' }
+    });
+  }
+
   if (data.link && !existingPaths.has('link/index.html')) {
     pages.push({
       path: 'link/index.html',
