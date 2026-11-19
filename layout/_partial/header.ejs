@@ -3,14 +3,15 @@
     <a class="brand" href="<%= url_for('/') %>" aria-label="<%= config.title %> 首页"><% if (theme.logo && theme.logo.enable && theme.logo.image) { %><img class="brand-image" src="<%= url_for(theme.logo.image) %>" alt="" width="34" height="34"><% } %><span><%= config.title %></span></a>
     <button class="mobile-menu-toggle icon-button" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="site-nav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     <nav id="site-nav" class="site-nav" aria-label="主导航">
-      <% const menu = config.theme_config && Object.prototype.hasOwnProperty.call(config.theme_config, 'menu') ? config.theme_config.menu : theme.menu; Object.entries(menu || {}).forEach(function(entry) { const label=entry[0], value=entry[1]; %>
+      <% const menu = config.theme_config && Object.prototype.hasOwnProperty.call(config.theme_config, 'menu') ? config.theme_config.menu : theme.menu; const currentPath = '/' + String(page.path || '').replace(/^\/+/, '').replace(/index\.html$/, '').replace(/\/+$/, '') + '/'; const menuMatches = function(href) { const path = '/' + String(href || '').replace(/^\/+/, '').replace(/index\.html$/, '').replace(/\/+$/, '') + '/'; return path === '//' ? currentPath === '//' : currentPath.startsWith(path); }; Object.entries(menu || {}).forEach(function(entry) { const label=entry[0], value=entry[1]; %>
         <% if (typeof value === 'string') { %>
-          <a class="nav-link<%= page.path === value.replace(/^\//, '') ? ' is-active' : '' %>" href="<%= url_for(value) %>"><%= label %></a>
+          <a class="nav-link<%= menuMatches(value) ? ' is-active' : '' %>" href="<%= url_for(value) %>"<% if (menuMatches(value)) { %> aria-current="page"<% } %>><%= label %></a>
         <% } else { %>
-          <div class="nav-group">
-            <button class="nav-link nav-group-toggle" type="button" aria-expanded="false"><%= label %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
+          <% const children = Object.entries(value || {}); const activeGroup = children.some(function(child) { return menuMatches(child[1]); }) || (page.layout === 'post' && children.some(function(child) { return /^\/archives\/?$/.test(child[1]); })); %>
+          <div class="nav-group<%= activeGroup ? ' is-current' : '' %>">
+            <button class="nav-link nav-group-toggle<%= activeGroup ? ' is-active' : '' %>" type="button" aria-expanded="false"><%= label %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
             <div class="nav-submenu">
-              <% Object.entries(value || {}).forEach(function(child) { %><a href="<%= url_for(child[1]) %>"><%= child[0] %></a><% }); %>
+              <% children.forEach(function(child) { %><a class="<%= menuMatches(child[1]) ? 'is-active' : '' %>" href="<%= url_for(child[1]) %>"<% if (menuMatches(child[1])) { %> aria-current="page"<% } %>><%= child[0] %></a><% }); %>
             </div>
           </div>
         <% } %>
