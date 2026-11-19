@@ -38,9 +38,19 @@ home:
   categories: []
 # 外观。mode 可选 auto（跟随系统）、light（浅色）、dark（深色）。
 # cursor_glow 可选 true、false，控制鼠标光斑。
+# particles.default 指定默认颗粒颜色；palette 按顺序显示色盘。
+# 每项的 from、to 为渐变两端的十六进制颜色。
 appearance:
   mode: auto
   cursor_glow: true
+  particles:
+    default: green
+    palette:
+      - {name: green, label: 绿色, from: '#22a879', to: '#78d6a0'}
+      - {name: blue, label: 蓝色, from: '#2468d8', to: '#8ab4f8'}
+      - {name: purple, label: 紫色, from: '#8537ed', to: '#ca88fa'}
+      - {name: orange, label: 橙色, from: '#f15a14', to: '#ffbd6a'}
+      - {name: red, label: 红色, from: '#dc2737', to: '#ff8390'}
 # Giscus 评论。enable 可选 true、false；仓库参数建议填在站点根目录的
 # _config.giorgio.yml 中，避免将个人站点标识发布到主题仓库。
 comments:

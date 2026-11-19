@@ -61,7 +61,7 @@ social:
 
 ## 外观与代码高亮
 
-`appearance.mode` 可选 `auto`、`light`、`dark`，分别表示跟随系统、浅色、深色；页面右上角也可切换，浏览器会记住选择。`appearance.cursor_glow` 控制鼠标光斑。
+`appearance.mode` 可选 `auto`、`light`、`dark`，分别表示跟随系统、浅色、深色；页面右上角也可切换，浏览器会记住选择。`appearance.cursor_glow` 控制鼠标光斑。`appearance.particles.default` 设置默认颗粒颜色，`palette` 中可配置渐变的 `from` 和 `to`。导航栏色盘可即时切换颜色，并记住选择；默认第一项是绿色。
 
 代码高亮使用 Hexo 内置高亮。站点 `_config.yml` 保持：
 

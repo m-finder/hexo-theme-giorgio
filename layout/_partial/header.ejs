@@ -16,6 +16,8 @@
         <% } %>
       <% }); %>
     </nav>
+    <% const particles = theme.appearance && theme.appearance.particles || {}; const palette = Array.isArray(particles.palette) ? particles.palette : []; %>
+    <% if (palette.length) { %><div class="particle-palette" role="group" aria-label="背景颗粒颜色"><% palette.forEach(function(color) { %><button class="particle-swatch" type="button" data-particle-name="<%= color.name %>" data-particle-from="<%= color.from %>" data-particle-to="<%= color.to %>" style="--swatch-from:<%= color.from %>;--swatch-to:<%= color.to %>" aria-label="<%= color.label || color.name %>" title="<%= color.label || color.name %>" aria-pressed="false"></button><% }); %></div><% } %>
     <button id="theme-toggle" class="icon-button theme-toggle" type="button" aria-label="切换背景明暗" title="切换背景明暗"><svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5 8.5 8.5 0 1 0 20.5 14.3Z"/></svg></button>
   </div>
 </header>
