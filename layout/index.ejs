@@ -34,12 +34,12 @@
       <% homeCategories.forEach(function(item) { const name = typeof item === 'string' ? item : item.name || item.category; const limit = typeof item === 'object' && item.limit != null ? Number(item.limit) : Number(home.limit || 12); const posts = allPosts.filter(function(post) { return post.categories && post.categories.toArray().some(function(category) { return category.name === name || category.slug === name; }); }).slice(0, Math.max(0, limit)); %>
         <section class="home-category">
           <div class="home-category-heading"><h2><%= name %></h2><a href="<%= url_for('/categories/' + encodeURIComponent(name) + '/') %>" aria-label="查看<%= name %>的全部文章">全部 ↗</a></div>
-          <% if (posts.length) { %><div class="home-category-list"><% posts.forEach(function(post) { %><a class="home-category-row" href="<%= url_for(post.path) %>"><span class="home-category-title"><%= post.title %></span><time datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'MM.DD') %></time></a><% }); %></div><% } else { %><p class="empty-state">这里暂时还没有文章。</p><% } %>
+          <% if (posts.length) { %><div class="home-category-list"><% posts.forEach(function(post) { %><a class="home-category-row" href="<%= url_for(post.path) %>"><span class="home-category-title"><%= post.title %></span><time datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'MM.DD.YY') %></time></a><% }); %></div><% } else { %><p class="empty-state">这里暂时还没有文章。</p><% } %>
         </section>
       <% }); %>
     </div>
   <% } else { %>
-    <section class="section-block home-posts"><div class="section-head"><div><h2>最近更新</h2></div><a href="<%= url_for('/archives/') %>">全部文章 ↗</a></div><%- partial('_partial/post-list', {posts: page.posts.toArray()}) %><%- partial('_partial/pagination') %></section>
+    <section class="section-block home-posts"><div class="section-head"><div><h2>最近更新</h2></div><a href="<%= url_for('/archives/') %>">全部文章 ↗</a></div><%- partial('_partial/post-list', {posts: page.posts.toArray(), home: true}) %><%- partial('_partial/pagination') %></section>
   <% } %>
 <%- partial('_partial/ad-google', {position: 'home'}) %>
 </main><%- partial('_partial/footer') %>
