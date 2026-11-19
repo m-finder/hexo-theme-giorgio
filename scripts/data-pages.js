@@ -17,7 +17,7 @@ hexo.extend.generator.register('giorgio-data-pages', function (locals) {
     pages.push({
       path: 'shuo/index.html',
       layout: 'page',
-      data: { path: 'shuo/index.html', layout: 'page', title: '说说', comments: false, content: '' }
+      data: { path: 'shuo/index.html', layout: 'page', title: '说说', comments: true, content: '' }
     });
   }
 
