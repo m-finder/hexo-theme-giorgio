@@ -4,7 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="<%= page.description || config.description || '' %>">
+  <% const keywords = [...(Array.isArray(config.keywords) ? config.keywords : String(config.keywords || '').split(',')), ...(page.tags && typeof page.tags.toArray === 'function' ? page.tags.toArray().map(tag => tag.name) : [])].map(value => String(value).trim()).filter(Boolean); const summary = String(page.description || page.excerpt || page.content || config.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 90); const description = [page.title, summary, keywords.join('、')].filter(Boolean).join(' · '); %>
+  <meta name="description" content="<%= description %>">
+  <meta name="keywords" content="<%= [...new Set([page.title, ...keywords].filter(Boolean))].join(', ') %>">
   <title><%= page.title ? page.title + ' · ' : '' %><%= config.title %></title>
   <link rel="icon" href="<%= url_for('/images/favicon.ico') %>">
   <link rel="alternate" type="application/atom+xml" title="RSS" href="<%= url_for('/atom.xml') %>">
