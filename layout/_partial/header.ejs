@@ -1,4 +1,5 @@
 <header class="site-header">
+  <span id="page-progress" class="page-progress" aria-hidden="true"></span>
   <div class="header-inner wrap">
     <a class="brand" href="<%= url_for('/') %>" aria-label="<%= config.title %> 首页"><% if (theme.logo && theme.logo.enable && theme.logo.image) { %><img class="brand-image" src="<%= url_for(theme.logo.image) %>" alt="" width="34" height="34"><% } %><span><%= config.title %></span></a>
     <button class="mobile-menu-toggle icon-button" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="site-nav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
