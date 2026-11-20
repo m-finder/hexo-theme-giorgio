@@ -1,3 +1,4 @@
-<% if (theme.comments.enable && theme.comments.repo && (page.comments === true || (page.layout === 'post' && page.comments !== false))) { %>
+<% const commentPath = '/' + String(page.path || '').replace(/^\/+/, '').replace(/index\.html$/, '').replace(/\/+$/, '') + '/'; const commentsExcluded = ['/categories/', '/tags/', '/gallery/'].includes(commentPath); %>
+<% if (!commentsExcluded && theme.comments.enable && theme.comments.repo && (page.comments === true || (page.layout === 'post' && page.comments !== false))) { %>
 <section class="comments" aria-label="评论"><h2>留下想法</h2><script src="https://giscus.app/client.js" data-repo="<%= theme.comments.repo %>" data-repo-id="<%= theme.comments.repo_id %>" data-category="<%= theme.comments.category %>" data-category-id="<%= theme.comments.category_id %>" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="<%= theme.appearance.mode === 'dark' ? 'dark' : theme.appearance.mode === 'light' ? 'light' : 'preferred_color_scheme' %>" data-lang="zh-CN" crossorigin="anonymous" async></script></section>
 <% } %>

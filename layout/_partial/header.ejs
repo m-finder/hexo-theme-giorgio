@@ -10,7 +10,7 @@
         <% } else { %>
           <% const children = Object.entries(value || {}); const activeGroup = children.some(function(child) { return menuMatches(child[1]); }) || (page.layout === 'post' && children.some(function(child) { return /^\/archives\/?$/.test(child[1]); })); %>
           <div class="nav-group<%= activeGroup ? ' is-current' : '' %>">
-            <button class="nav-link nav-group-toggle<%= activeGroup ? ' is-active' : '' %>" type="button" aria-expanded="false"><%= label %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
+            <button class="nav-link nav-group-toggle<%= activeGroup ? ' is-active' : '' %>" type="button"><%= label %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
             <div class="nav-submenu">
               <% children.forEach(function(child) { %><a class="<%= menuMatches(child[1]) ? 'is-active' : '' %>" href="<%= url_for(child[1]) %>"<% if (menuMatches(child[1])) { %> aria-current="page"<% } %>><%= child[0] %></a><% }); %>
             </div>
